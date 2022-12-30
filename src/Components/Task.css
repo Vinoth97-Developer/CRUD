@@ -1,0 +1,236 @@
+.task_container {
+  width: 400px;
+  height: fit-content;
+  border: 1px solid rgba(139, 139, 139, 0.362);
+  border-radius: 5px;
+  margin-top: 100px;
+}
+
+.task_header {
+  border-bottom: 1px solid rgba(139, 139, 139, 0.362);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.add_btn {
+  border-left: 1px solid rgba(139, 139, 139, 0.362);
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.task_header p {
+  margin: 0;
+  font-weight: 600;
+  margin-left: 10px;
+  color: rgba(0, 0, 0, 0.802);
+}
+
+.task_header p span {
+  margin-left: 5px;
+  font-size: 17px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.499);
+}
+
+.task_main_true {
+  background-color: rgb(233, 248, 255);
+  border-radius: 0px 0px 5px 5px;
+  display: block;
+}
+.task_main_false{
+display: none;
+}
+.task_body{
+    display: flex;
+    flex-direction: column;
+}
+.task_body input{
+    margin: 5px;
+    height: 30px;
+}
+.task_body select{
+    margin: 5px;
+    height: 35px;
+    width: 370px;
+    
+}
+.task_body label{
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   margin-left:10px;
+  margin-top: 15px;
+}
+.input_grid{
+    display: flex;
+    justify-content: space-between;
+}
+.task_icon{
+    position: absolute;
+    right: 28px;
+    top: 35px;
+    font-size: 20px;
+    opacity: .5;
+}
+.date{
+  text-align: center;
+  position: relative;
+}
+.date_icon{
+  position: absolute;
+  top: 35px;
+  left: 20px;
+}
+.time{
+  position: relative;
+  text-align: center;
+}
+.time-icon{
+  position: absolute;
+  top: 33px;
+  left: 15px;
+  font-size: 20px;
+}
+::-webkit-outer-spin-button,
+::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.save_btn{
+  background-color:rgb(71,187,127) ;
+  outline: none;
+  border: none;
+  padding: 10px 25px;
+  color: white;
+  font-size: large;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.cancel_btn{
+  outline: none;
+  border: none;
+  background-color:transparent;
+  font-size: large;
+  padding: 10px 25px;
+  color: rgba(0, 0, 0, 0.609);
+  cursor: pointer;
+}
+.task_footer{
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 30px 15px ;
+}
+#desc{
+  width: 360px;
+  height: 33px;
+  cursor: pointer;
+}
+#time{
+  width: 160px;
+  height: 34px;
+  margin-right: 15px;
+}
+label p{
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+}
+input,.date,select{
+border-radius: 3px;
+border: 1px solid gray;
+outline-color: rgb(157, 222, 222);
+}
+
+/* results */
+.resut{
+border: 1px solid rgba(139, 139, 139, 0.362);
+height: 70px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 5px;
+border-radius: 3px;
+}
+.delete{
+font-size: 23px;
+opacity: .8;
+cursor: pointer;
+}
+.icons_set{
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.profile{
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+.bell_icon{
+  display: flex;
+  width: 60%;
+  align-items: center;
+  margin-right: 5px;
+}
+.bell_icon div{
+border: 1px solid rgba(139, 139, 139, 0.362);
+height: 40px;
+width: 40px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 3px;
+}
+.edit_icon_true{
+  border: 1px solid rgba(139, 139, 139, 0.362);
+height: 40px;
+width: 40px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 3px;
+cursor: pointer;
+visibility: hidden;
+
+}
+.resut:hover .edit_icon_true{
+  visibility: visible;
+}
+
+.img_div{
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(139, 139, 139, 0.362);
+  border-radius: 5px;
+}
+.img_div img{
+  width: 100%;
+  border-radius: 5px;
+}
+.profile .name{
+margin: 0;
+margin-left: 5px;
+font-weight: 600;
+}
+.profile .ts_date{
+  margin: 0;
+  color: red;
+  margin-left: 5px;
+  font-size: 15px;
+}
+.delete_false{
+  visibility: hidden;
+}
+.delete_true{
+  visibility: hidden;
+}
+
