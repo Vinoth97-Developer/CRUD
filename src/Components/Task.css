@@ -79,14 +79,9 @@ display: none;
     font-size: 20px;
     opacity: .5;
 }
-.date{
-  text-align: center;
-  position: relative;
-}
-.date_icon{
-  position: absolute;
-  top: 35px;
-  left: 20px;
+#date{
+  width: 160px;
+  height: 34px;
 }
 .time{
   position: relative;
@@ -234,3 +229,8 @@ font-weight: 600;
   visibility: hidden;
 }
 
+.note{
+  color: red;
+  font-size: 11px;
+  font-weight: 600;
+}

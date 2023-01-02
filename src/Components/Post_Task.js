@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { TbClipboardText } from "react-icons/tb";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./Task.css";
-import { FaRegCalendarAlt } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { TbBellRinging } from "react-icons/tb";
 import { TiTick } from "react-icons/ti";
@@ -13,12 +11,9 @@ import axios from "axios";
 import Avatar from "../Components/pic/avatar.png";
 
 function PostTask() {
-  const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
   const [taskMsg, setTaskMsg] = useState("Follow Up");
-  const [taskDate, setTaskDate] = useState(
-    date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
-  );
+  const [taskDate, setTaskDate] = useState(new Date());
   const [taskTime, setTaskTime] = useState("");
   const [user, setUser] = useState("");
   const [del, setDel] = useState(false);
@@ -26,20 +21,20 @@ function PostTask() {
   const [userList, setUserList] = useState([]);
   const [id, setId] = useState("");
   const [update, SetUpdate] = useState("");
-  const count=apiData.map((data)=>data.id);
-  const newval=count.length
-  const updateData={
+  const count = apiData.map((data) => data.id);
+  const newval = count.length;
+  const [edit, setEdit] = useState(true);
+  const updateData = {
     user: user,
     date: taskDate,
     time: taskTime,
     task: taskMsg,
-  }
-
+  };
+  // URLS
   const API_URL = "https://63a95ef4594f75dc1db3c52f.mockapi.io/Task/";
   const USER_URL = "https://63a95ef4594f75dc1db3c52f.mockapi.io/users";
 
   // save
-
   let handleSave = () => {
     setShow(false);
     postData();
@@ -54,20 +49,26 @@ function PostTask() {
 
   let handleCancel = () => {
     setShow(false);
+    setEdit(true);
   };
 
   // Update
 
   let handleEdit = async () => {
     setShow(true);
-    await axios
-      .put(API_URL+`${id}`, updateData)
-      .then((res) => SetUpdate(res.data));
+    await axios.get(API_URL + `${id}`).then((res) => SetUpdate(res.data));
     setTaskMsg(update.task);
     setTaskTime(update.time);
     setUser(update.user);
     setTaskDate(update.date);
-    console.log(update);
+    setEdit(false);
+  };
+  let handleData = async () => {
+    await axios
+      .put(API_URL + `${id}`, updateData)
+      .then((res) => alert("Updated Successfully"));
+    setEdit(true);
+    window.location.reload(false);
   };
 
   // Post Data
@@ -91,9 +92,9 @@ function PostTask() {
   // Delete
   const handleDelete = async () => {
     await axios.delete(API_URL + `${id}`).then(alert("deleted"));
+    setEdit(true);
     window.location.reload(false);
   };
-  
 
   return (
     <>
@@ -120,39 +121,19 @@ function PostTask() {
                   placeholder="Task Description"
                   onChange={(e) => setTaskMsg(e.target.value)}
                   value={taskMsg}
-                  
                 />
                 <TbClipboardText className="task_icon" />
               </label>
               <div className="input_grid">
                 <label htmlFor="date">
                   <p>Date</p>
-                  <DatePicker
+
+                  <input
+                    type={"date"}
                     id="date"
-                    dateFormat="yyyy/MM/dd"
-                    className="date"
-                    selected={date}
-                    onChange={(date) => setDate(date)}
-                    popperClassName="some-custom-class"
-                    popperPlacement={"top"}
-                    popperModifiers={[
-                      {
-                        name: "offset",
-                        options: {
-                          offset: [25, 5],
-                        },
-                      },
-                      {
-                        name: "preventOverflow",
-                        options: {
-                          rootBoundary: "viewport",
-                          tether: false,
-                          altAxis: true,
-                        },
-                      },
-                    ]}
+                    value={taskDate}
+                    onChange={(e) => setTaskDate(e.target.value)}
                   />
-                  <FaRegCalendarAlt className="date_icon" />
                 </label>
 
                 <label htmlFor="time">
@@ -187,9 +168,15 @@ function PostTask() {
                 <button className="cancel_btn" onClick={handleCancel}>
                   Cancel
                 </button>
-                <button className="save_btn" onClick={handleSave}>
-                  Save
-                </button>
+                {edit ? (
+                  <button className="save_btn" onClick={handleSave}>
+                    Save
+                  </button>
+                ) : (
+                  <button className="save_btn" onClick={handleData}>
+                    Save
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -237,6 +224,7 @@ function PostTask() {
             </div>
           ))}
         </>
+        <p className="note">* Api server is slow you have to click edit icon multiple times for updating values</p>
       </div>
     </>
   );
